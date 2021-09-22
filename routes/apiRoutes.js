@@ -8,7 +8,7 @@ module.exports = function (app) {
       res.json(dbWorkout);
     } catch {
       (err) => {
-        res.json(err);
+        res.status(400).json(err);
       };
     }
   });
@@ -19,7 +19,7 @@ module.exports = function (app) {
       const response = await db.Workout.create({ type: "workout" });
       res.json(response);
     } catch (err) {
-      res.json(err, "Error occured while creating workout");
+      res.status(400).json(err);
     }
   });
 
@@ -33,7 +33,18 @@ module.exports = function (app) {
 
       res.json(workout);
     } catch (err) {
-      res.json(err, "Error occurred while adding exercise");
+      res.status(400).json(err);
     }
   });
+
+  //get workouts in range for dashboard
+  app.get("/api/workouts/range"),
+    async ({}, res) => {
+      try {
+        const workouts = await db.Workout.find({});
+        res.json(workouts);
+      } catch (err) {
+        res.status(400).json(err);
+      }
+    };
 };
