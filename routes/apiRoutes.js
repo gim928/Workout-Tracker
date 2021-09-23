@@ -38,25 +38,24 @@ module.exports = function (app) {
   });
 
   //get workouts in range for dashboard
-  app.get("/api/workouts/range"),
-    async (req, res) => {
-      try {
-        await db.Workout.aggregate([
-          {
-            $addFields: {
-              totalDuration: { $sum: "$exercises.duration" },
-              totalWeight: { $sum: "$exercises.weight" },
-              totalSets: { $sum: "$exercises.sets" },
-              totalReps: { $sum: "$exercises.reps" },
-              totalDistance: { $sum: "$exercises.distance" },
-            },
+  app.get("/api/workouts/range", async (req, res) => {
+    try {
+      const allWorkouts = await db.Workout.aggregate([
+        {
+          $addFields: {
+            totalDuration: { $sum: "$exercises.duration" },
+            totalWeight: { $sum: "$exercises.weight" },
+            totalSets: { $sum: "$exercises.sets" },
+            totalReps: { $sum: "$exercises.reps" },
+            totalDistance: { $sum: "$exercises.distance" },
           },
-        ]);
-        const allWorkouts = await db.Workout.find({});
-        console.log(allWorkouts);
-        return res.json(allWorkouts);
-      } catch (err) {
-        res.status(400).json(err);
-      }
-    };
+        },
+      ]);
+      // const allWorkouts = await db.Workout.find({});
+      console.log(allWorkouts);
+      return res.json(allWorkouts);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
 };
