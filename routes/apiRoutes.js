@@ -39,7 +39,7 @@ module.exports = function (app) {
 
   //get workouts in range for dashboard
   app.get("/api/workouts/range"),
-    async ({}, res) => {
+    async (req, res) => {
       try {
         const workouts = await db.Workout.find({});
         res.json(workouts);
