@@ -43,4 +43,4 @@ You may reach me by email at: <eaim928@gmail.com>
 
 You may also reach me on github: <https://github.com/gim928>
 
-Link to deployed application:
+Link to deployed application: <https://shrouded-ocean-10497.herokuapp.com/>
