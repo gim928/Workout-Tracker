@@ -27,6 +27,10 @@ npm i
 
 This project will be used to keep track of fitness activities
 
+## Screenshots: ![screenshot](./screenshot-home.png)
+
+![screenshot](./Screenshot-Dashboard.png)
+
 ## Tests
 
 npm run test
